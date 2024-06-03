@@ -2,8 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import java.util.List;
 
 public class App {
 
@@ -11,47 +9,28 @@ public class App {
         System.out.println("Hello, World!");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\Documents\\selenium\\test1\\src\\drivers\\chromedriver.exe");
 
-        // Set ChromeOptions for incognito mode
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
+        // Initialize WebDriver
+        WebDriver driver = new ChromeDriver();
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.get("https://www.google.com/");
+        // Open the specified website
+        driver.get("https://www.saucedemo.com/");
         
-        // Print the title of the page
-        System.out.println(driver.getTitle());
-
-        // Perform a search for "ebay"
-        WebElement searchBox = driver.findElement(By.name("q"));
-        searchBox.sendKeys("ebay");
-        searchBox.submit();
-        
-        // Wait for the search results to load
-        Thread.sleep(3000);
-        
-        // Click on the first search result
-        List<WebElement> searchResults = driver.findElements(By.cssSelector("h3"));
-        if (!searchResults.isEmpty()) {
-            searchResults.get(0).click();
-        } else {
-            System.out.println("No search results found for 'ebay'.");
-            driver.quit();
-            return;
-        }
-
-        // Wait for the first website to load
+        // Wait for the page to load
         Thread.sleep(5000);
-        
-        // Search for "pen" in the specified search box
-        try {
-            WebElement searchInput = driver.findElement(By.id("gh-ac"));
-            searchInput.sendKeys("pen");
-            searchInput.submit();
-        } catch (Exception e) {
-            System.out.println("Search box not found on the website.");
-        }
-        
-        // Wait for the search results to load
+
+        // Enter the username
+        WebElement usernameField = driver.findElement(By.id("user-name"));
+        usernameField.sendKeys("standard_user"); // Replace with actual username
+
+        // Enter the password
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.sendKeys("secret_sauce"); // Replace with actual password
+
+        // Click the login button
+        WebElement loginButton = driver.findElement(By.id("login-button"));
+        loginButton.click();
+
+        // Wait for some time to observe the result
         Thread.sleep(5000);
 
         // Quit the driver
