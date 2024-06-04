@@ -28,6 +28,8 @@ public class App {
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.sendKeys("secret_sauce");
 
+        Thread.sleep(1000);
+
         // Click the login button
         WebElement loginButton = driver.findElement(By.id("login-button"));
         loginButton.click();
@@ -80,6 +82,8 @@ public class App {
 
             WebElement postalCodeField = driver.findElement(By.id("postal-code"));
             postalCodeField.sendKeys("70100");
+
+            Thread.sleep(1000);
 
             // Click the "continue" button
             WebElement continueButton = driver.findElement(By.id("continue"));
